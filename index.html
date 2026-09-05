@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Attendance System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- QR Code Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- QR Scanner -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<!-- ================= LOGIN PAGE ================= -->
+
+<div id="loginPage" class="page">
+
+    <div class="login-box">
+
+        <h1>Smart Attendance</h1>
+
+        <p>QR Code + Location Verification</p>
+
+        <input
+            type="text"
+            id="loginRollNo"
+            placeholder="Enter Roll Number"
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter Password"
+        >
+
+        <button onclick="loginStudent()">
+            Login
+        </button>
+
+        <p class="link" onclick="showRegister()">
+            New Student? Register
+        </p>
+
+        <p class="teacher-link" onclick="teacherLogin()">
+            Teacher Dashboard
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= REGISTER PAGE ================= -->
+
+<div id="registerPage" class="page hidden">
+
+    <div class="login-box">
+
+        <h1>Student Registration</h1>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Student Name"
+        >
+
+        <input
+            type="text"
+            id="studentRoll"
+            placeholder="Roll Number"
+        >
+
+        <input
+            type="email"
+            id="studentEmail"
+            placeholder="Email"
+        >
+
+        <input
+            type="password"
+            id="studentPassword"
+            placeholder="Password"
+        >
+
+        <button onclick="registerStudent()">
+            Register
+        </button>
+
+        <p class="link" onclick="showLogin()">
+            Already Registered? Login
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= STUDENT DASHBOARD ================= -->
+
+<div id="studentDashboard" class="dashboard hidden">
+
+    <nav>
+
+        <h2>Smart Attendance</h2>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </nav>
+
+
+    <div class="welcome">
+
+        <h1>
+            Welcome,
+            <span id="studentDisplayName"></span>
+        </h1>
+
+        <p>
+            Roll Number:
+            <span id="studentDisplayRoll"></span>
+        </p>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Classes</h3>
+            <p id="totalClasses">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Present</h3>
+            <p id="presentClasses">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Absent</h3>
+            <p id="absentClasses">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Attendance %</h3>
+            <p id="attendancePercentage">0%</p>
+        </div>
+
+    </div>
+
+
+    <!-- ATTENDANCE -->
+
+    <div class="section">
+
+        <h2>Mark Attendance</h2>
+
+        <p>
+            Scan the QR code provided by your teacher.
+        </p>
+
+        <button onclick="startScanner()">
+            📷 Scan QR Code
+        </button>
+
+        <div id="reader"></div>
+
+        <div id="locationStatus"></div>
+
+        <div id="attendanceMessage"></div>
+
+    </div>
+
+
+    <!-- ATTENDANCE HISTORY -->
+
+    <div class="section">
+
+        <h2>Attendance History</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Location</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="attendanceTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TEACHER DASHBOARD ================= -->
+
+<div id="teacherDashboard" class="dashboard hidden">
+
+    <nav>
+
+        <h2>Teacher Dashboard</h2>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </nav>
+
+
+    <div class="section">
+
+        <h2>Generate Attendance QR Code</h2>
+
+        <p>
+            Generate a QR code for the current attendance session.
+        </p>
+
+        <button onclick="generateQR()">
+            Generate QR
+        </button>
+
+        <div id="qrcode"></div>
+
+        <p id="qrStatus"></p>
+
+    </div>
+
+
+    <!-- ANALYTICS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <p id="teacherTotalStudents">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Present Today</h3>
+            <p id="teacherPresentToday">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Absent Today</h3>
+            <p id="teacherAbsentToday">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Attendance Rate</h3>
+            <p id="teacherAttendanceRate">0%</p>
+        </div>
+
+    </div>
+
+
+    <!-- STUDENT MONITORING -->
+
+    <div class="section">
+
+        <h2>Student Monitoring</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Roll No</th>
+                    <th>Email</th>
+                    <th>Attendance %</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="studentMonitoringTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- ATTENDANCE RECORDS -->
+
+    <div class="section">
+
+        <h2>Attendance Records</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Student</th>
+                    <th>Roll No</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Distance</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="teacherAttendanceTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

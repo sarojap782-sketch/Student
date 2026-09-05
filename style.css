@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+}
+
+/* ---------------- LOGIN ---------------- */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.login-box {
+    background: white;
+
+    width: 380px;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+
+    text-align: center;
+}
+
+.login-box h1 {
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin: 8px 0;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+button {
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 15px;
+
+    margin-top: 10px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.link {
+    color: #0066cc;
+
+    cursor: pointer;
+
+    margin-top: 20px;
+}
+
+.teacher-link {
+    color: #555;
+
+    cursor: pointer;
+}
+
+
+/* ---------------- DASHBOARD ---------------- */
+
+.dashboard {
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+nav {
+    background: #222;
+
+    color: white;
+
+    padding: 18px 5%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+nav button {
+    background: white;
+
+    color: #222;
+
+    margin: 0;
+}
+
+.welcome {
+    padding: 30px 5%;
+}
+
+
+/* ---------------- CARDS ---------------- */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 20px;
+
+    padding: 20px 5%;
+}
+
+.card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+/* ---------------- SECTIONS ---------------- */
+
+.section {
+    background: white;
+
+    margin: 25px 5%;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    margin-bottom: 15px;
+}
+
+
+/* ---------------- QR ---------------- */
+
+#qrcode {
+    margin: 25px auto;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+#reader {
+    width: 350px;
+
+    max-width: 100%;
+
+    margin: 25px auto;
+}
+
+#locationStatus,
+#attendanceMessage,
+#qrStatus {
+    margin-top: 15px;
+
+    padding: 10px;
+
+    font-weight: bold;
+}
+
+
+/* ---------------- TABLE ---------------- */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    text-align: center;
+}
+
+th {
+    background: #eee;
+}
+
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 600px) {
+
+    .login-box {
+        width: 90%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 7px;
+    }
+
+    nav h2 {
+        font-size: 18px;
+    }
+
+}

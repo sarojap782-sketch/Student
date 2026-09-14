@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Campus Attendance System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Smart Campus Attendance System</h1>
+        <p>Digital Attendance Management</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <h2>Student Attendance</h2>
+
+            <label>Student Name</label>
+            <input type="text" id="studentName" placeholder="Enter student name">
+
+            <label>Register Number</label>
+            <input type="text" id="registerNumber" placeholder="Enter register number">
+
+            <label>Department</label>
+            <select id="department">
+                <option value="">Select Department</option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="MECH">MECH</option>
+            </select>
+
+            <button onclick="markAttendance()">Mark Attendance</button>
+
+            <p id="message"></p>
+        </section>
+
+        <section class="card">
+            <h2>Attendance Records</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Register No</th>
+                        <th>Department</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="attendanceTable">
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Smart Campus Attendance System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
